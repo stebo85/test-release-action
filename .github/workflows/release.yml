@@ -9,18 +9,13 @@ jobs:
   build_release:
     name: build_release
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: version
-        run: echo "::set-output name=version::$(./bin/azblogfilter --version)"
-        id: version
       - name: build artifacts
-        run: echo "Test" > release.zip
+        run: echo "Here you compile matlab and output a zip file" > release.zip
       - name: release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
