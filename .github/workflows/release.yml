@@ -20,22 +20,16 @@ jobs:
       - name: build artifacts
         run: echo "Test" > release.zip
       - name: release
-        uses: actions/create-release@v1
-        id: create_release
+        uses: ncipollo/release-action@v1
         with:
-          draft: false
-          prerelease: false
-          release_name: ${{ steps.version.outputs.version }}
-          tag_name: ${{ github.ref }}
-          body: "changelog body"
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-      - name: upload artifact
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: release.zip
-          asset_name: release.zip
-          asset_content_type: application/gzip
+          artifacts: "release.zip"
+          bodyFile: "body.md"
+      # - name: upload artifact
+      #   uses: actions/upload-release-asset@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ github.token }}
+      #   with:
+      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
+      #     asset_path: release.zip
+      #     asset_name: release.zip
+      #     asset_content_type: application/gzip
