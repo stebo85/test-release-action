@@ -22,7 +22,7 @@ jobs:
       - name: build artifacts
         run: echo "Test" > release.zip
       - name: release
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@latest
         with:
           artifacts: "release.zip"
           bodyFile: "body.md"
