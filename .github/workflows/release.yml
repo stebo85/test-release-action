@@ -22,16 +22,9 @@ jobs:
       - name: build artifacts
         run: echo "Test" > release.zip
       - name: release
-        uses: ncipollo/release-action@latest
+        uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          artifacts: "release.zip"
-          bodyFile: "body.md"
-      # - name: upload artifact
-      #   uses: actions/upload-release-asset@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ github.token }}
-      #   with:
-      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
-      #     asset_path: release.zip
-      #     asset_name: release.zip
-      #     asset_content_type: application/gzip
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+            release.zip
